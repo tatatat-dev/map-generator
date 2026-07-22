@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Myroslav\\source\\repos\\map isaac 2\\map isaac 2\\map isaac 2.csproj",
-      "projectName": "map isaac 2",
-      "projectPath": "C:\\Users\\Myroslav\\source\\repos\\map isaac 2\\map isaac 2\\map isaac 2.csproj",
+      "projectUniqueName": "C:\\Users\\Myroslav\\source\\repos\\map isaac clean\\map isaac clean\\map isaac clean.csproj",
+      "projectName": "map isaac clean",
+      "projectPath": "C:\\Users\\Myroslav\\source\\repos\\map isaac clean\\map isaac clean\\map isaac clean.csproj",
       "packagesPath": "C:\\Users\\Myroslav\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Myroslav\\source\\repos\\map isaac 2\\map isaac 2\\obj\\",
+      "outputPath": "C:\\Users\\Myroslav\\source\\repos\\map isaac clean\\map isaac clean\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Myroslav\\AppData\\Roaming\\NuGet\\NuGet.Config",

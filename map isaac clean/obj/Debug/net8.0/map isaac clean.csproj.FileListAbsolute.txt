@@ -1,0 +1,14 @@
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\bin\Debug\net8.0\map isaac clean.exe
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\bin\Debug\net8.0\map isaac clean.deps.json
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\bin\Debug\net8.0\map isaac clean.runtimeconfig.json
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\bin\Debug\net8.0\map isaac clean.dll
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\bin\Debug\net8.0\map isaac clean.pdb
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.AssemblyInfoInputs.cache
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.AssemblyInfo.cs
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.csproj.CoreCompileInputs.cache
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.dll
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\refint\map isaac clean.dll
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.pdb
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\map isaac clean.genruntimeconfig.cache
+C:\Users\Myroslav\source\repos\map isaac clean\map isaac clean\obj\Debug\net8.0\ref\map isaac clean.dll
