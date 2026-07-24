@@ -1,18 +1,21 @@
 ﻿
 int length = 7;
-int roomsOnMap = 5;
+int countSpawnedRooms = 0;
+int countTargetRooms = 5;
 
 
 
 Random rng = new Random();
 
 char[,] mapArray = new char[length, length];
-List<(int,int)> activeRooms = new List<(int,int)> (); //у кортежа можно дать именования чтобы не писать Item1 Item2
+List<(int y, int x)> activeRooms = new List<(int, int)>();
 
-int[,] directions = //переписать на массив кортежей типа (int dy, int dx)[] directions =  
+(int y, int x)[] directions =
 {
-    {-1,1,0,0 },
-    {0,0,-1,1 }
+    (-1,0), //0: вверх
+    (1,0),  //1: вниз
+    (0,-1), //2: влево
+    (0,1)   //3: вправо
 };
 
 CreateStartMap();
@@ -22,21 +25,63 @@ DrawMap();
 
 void NewRooms()
 {
-    for (int i = 0; i < roomsOnMap - 1; i++)
+    while (countSpawnedRooms < countTargetRooms)
     {
-        int roomNow = rng.Next(0, activeRooms.Count);
-        int nextDirection = rng.Next(0, 4);
-        int dy = directions[0, nextDirection];
-        int dx = directions[1, nextDirection];
 
-        mapArray[activeRooms[roomNow].Item1 + dy, activeRooms[roomNow].Item2 + dx] = '1';
+        int roomNow = rng.Next(0, activeRooms.Count);
+        if (!CheckIsRoomActive(activeRooms[roomNow].y, activeRooms[roomNow].x)) continue;
+        int nextDirection = rng.Next(0, 4);
+        int targetY = activeRooms[roomNow].y + directions[nextDirection].y;
+        int targetX = activeRooms[roomNow].x + directions[nextDirection].x;
+        if (OutOfBounds(targetY, targetX)) continue;
+
+        AddRoom(targetY, targetX);
+
     }
+}
+
+//TODO: делает 2 дела сразу, и проверяет ли комната активна и редактирует комнаты, надо распилить на 2 части
+bool CheckIsRoomActive(int yRoom, int xRoom)
+{
+    bool isActive = false;
+    //TODO:тут перегружено, если на первой иттерации видно что комната активна то выходить сразу нада
+    for (int i = 0; i < directions.Length; i++)
+    {
+        bool currentResult = false;
+        int targetY = yRoom + directions[i].y;
+        int targetX = xRoom + directions[i].x;
+        //TODO: можно 2 ифа просто соединить вместе
+        if (OutOfBounds(targetY, targetX)) continue;
+        if (mapArray[targetY, targetX] == '0') currentResult = true;
+        isActive = isActive || currentResult;
+    }
+
+    if (isActive)
+    {
+        if (activeRooms.Contains((yRoom, xRoom))) return true;
+        activeRooms.Add((yRoom, xRoom)); return true;
+
+    }
+    activeRooms.Remove((yRoom, xRoom));
+    return false;
+}
+void AddRoom(int yRoom, int xRoom)
+{
+    mapArray[yRoom, xRoom] = '1';
+    countSpawnedRooms++;
+    CheckIsRoomActive(yRoom, xRoom);
+}
+bool OutOfBounds(int targetY, int targetX)
+{
+    //TODO: можно просто сразу строчку возвращать
+    if (targetY < 0 || targetX < 0 || targetY >= length || targetX >= length) return true;
+    return false;
 }
 void CreateStartMap()
 {
     for (int y = 0; y < length; y++)
     {
-        for (int x = 0;  x < length; x++)
+        for (int x = 0; x < length; x++)
         {
             mapArray[y, x] = '0';
         }
@@ -48,8 +93,7 @@ void CreateFirstRoom()
     int roomY = (length - 1) / 2;
     int roomX = (length - 1) / 2;
 
-    mapArray[roomY, roomX] = '1';
-    activeRooms.Add((roomY, roomX));
+    AddRoom(roomY, roomX);
 
 }
 
