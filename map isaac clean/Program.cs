@@ -2,7 +2,7 @@
 int length = 7;
 
 int countSpawnedRooms = 0;
-int countTargetRooms = 50;
+int countTargetRooms = 20;
 
 int attempts = 0;
 int maxAttempts = 1000;
@@ -11,8 +11,6 @@ Random rng = new Random();
 
 char[,] mapArray = new char[length, length];
 List<(int y, int x)> activeRooms = new List<(int, int)>();
-
-
 
 (int y, int x)[] directions =
 {
