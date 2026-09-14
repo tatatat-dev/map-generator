@@ -1,7 +1,11 @@
 ﻿
 int length = 7;
+
 int countSpawnedRooms = 0;
-int countTargetRooms = 15;
+int countTargetRooms = 20;
+
+int attempts = 0;
+int maxAttempts = 1000;
 
 Random rng = new Random();
 
@@ -26,16 +30,41 @@ List<(int y, int x)> activeRooms = new List<(int, int)>();
 CreateStartMap();
 CreateFirstRoom();
 NewRooms();
+Neighbours();
 DrawMap();
 
+void Neighbours()
+{
+    for (int y = 0; y < length; y++)
+    {
+        for (int x = 0; x < length; x++)
+        {
+            if (mapArray[y, x] == '0') continue;
+            mapArray[y, x] = (char)('0' + CountNeighbours(y, x));
+        }
+    }
+}
+
+int CountNeighbours(int roomY,int roomX)
+{
+    int count = 0;
+    for (int i = 0; i < directions.Length; i++)
+    {
+        int targetY = roomY + directions[i].y;
+        int targetX = roomX + directions[i].x;
+        if (OutOfBounds(targetY, targetX)) continue;
+        if (mapArray[targetY, targetX] == '0') continue;
+        count++;
+    }
+    return count;
+}
 void NewRooms()
 {
 
-    //TODO: сделать счетчик попыток для комнат, типа если в карту не помещяеться колво комнат то покрути штуку ну еще 1000 раз и отпускай так
 
     while (countSpawnedRooms < countTargetRooms)
     {
-
+        attempts++;
         int roomNow = rng.Next(0, activeRooms.Count);
 
         if (!CheckIsRoomActive(activeRooms[roomNow].y, activeRooms[roomNow].x)) continue;
@@ -45,10 +74,11 @@ void NewRooms()
         int targetY = activeRooms[roomNow].y + directions[nextDirection].y;
         int targetX = activeRooms[roomNow].x + directions[nextDirection].x;
 
-        if (OutOfBounds(targetY, targetX) || !CanPlaceRoom(targetY,targetX) || IsRoomCreateSquare(targetY,targetX)) continue;
+        if (attempts == maxAttempts) break;
+        if (OutOfBounds(targetY, targetX) || !CanPlaceRoom(targetY, targetX) || IsRoomCreateSquare(targetY, targetX)) continue;
 
         AddRoom(targetY, targetX);
-
+        attempts = 0;
     }
 }
 
@@ -79,9 +109,9 @@ bool CheckIsRoomActive(int roomY, int roomX)
         return true;
     }
 
-    //TODO: перенести в другое место кудато
 
-    activeRooms.Remove((roomY, roomX));
+
+    activeRooms.Remove((roomY, roomX)); //можно перенести но какбудто нахуй надо
     return false;
 }
 void MakeRoomActive(int roomY, int roomX)
@@ -133,4 +163,3 @@ void DrawMap()
         Console.WriteLine();
     }
 }
-
